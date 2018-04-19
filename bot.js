@@ -14,26 +14,12 @@ function tweetIt() {
 
     function tweeted(err, data, response) {
         if (err) {
-            console.log("Deu ruim, meu parcero!");
+            console.log("Something went Wrong!");
         } else {
-            console.log("Bombarel!");
+            console.log("It Works!");
         }
     }
 
 }
 
-/*
-const params = {
-    q: 'programming',
-    count: 1
-};
-
-function gotData(err, data, response) {
-    let tweets = data.statuses;
-    for (let i = 0; i < tweets.lenght; i++) {
-        console.log(tweets[i].text);
-    }
-};
-
-t.get('search/tweets', params, gotData);
-*/
+setInterval(tweetIt, 1000*60*60); //Tweet each hour
