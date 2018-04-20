@@ -5,15 +5,21 @@ const twit = require('twit');
 const config = require('./config');
 const t = new twit(config);
 
+const stream = t.stream('user');
+stream.on('tweet', tweetEvent);
 
+function tweetEvent(eventMsg) {
 
-let stream = t.stream('user');
-stream.on('follow', followed);
+    const replyto = eventMsg.in_reply_to_screen_name;
+    const text = eventMsg.text;
+    const from = eventMsg.user.screen_name;
 
-function followed(eventMsg) {
-    const name = event.source.name;
-    const screenName = eventMsg.source.screen_name;
-    tweetIt('@' + screenName + ' o/');
+    console.log(replyto + ' ' + from);
+
+    if (replyto === 'mtt_Marcos') {
+        const newTweet = '@' + from + ' :D';
+        tweetIt(newTweet)
+    }
 }
 
 function tweetIt(msg) {
